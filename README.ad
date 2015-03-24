@@ -1,0 +1,8 @@
+SQLPP
+=====
+:Author: Egor Starostin <egorst@gmail.com>
+
+Name
+~~~~
+sqlpp -- sqlplus enhanced with custom rlwrapfilter
+
