@@ -6,3 +6,10 @@ Name
 ~~~~
 sqlpp -- sqlplus enhanced with custom rlwrapfilter
 
+
+Files
+~~~~~
+
+* sqlpp.pm -- rlwrap filter
+
+* sqlpp -- sh wrapper to run sqlplus with rlwrap and this filter
