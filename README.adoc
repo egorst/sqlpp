@@ -13,3 +13,10 @@ Files
 * sqlpp.pm -- rlwrap filter
 
 * sqlpp -- sh wrapper to run sqlplus with rlwrap and this filter
+
+New Commands
+~~~~~~~~~~~~
+
+* set transpose on/off, toggle transpose -- transpose output (like in Tom Kyte's print_table)
+
+* set compact on/off, toggle compact -- compact output
