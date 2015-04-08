@@ -7,6 +7,14 @@ use Term::ANSIColor;
 
 our $transposeOutput = 0;
 our $compactOutput   = 0;
+our $toecho;
+
+sub logit {
+    my ($l) = shift;
+    open my $LOG,">>sqlpp.log" or return;
+    print $LOG $l,"\n";
+    close $LOG;
+}
 
 sub handle_output {
     s/^(ORA\-\d+:.*)$/\e[31m$1\e[0m/mg;
@@ -14,11 +22,30 @@ sub handle_output {
 }
 
 sub handle_input {
-    $_;
+    my $input = $_;
+    logit("$input");
+    if ($input =~ /set\s+transpose\s+on/i) {
+        $transposeOutput = 1;
+        $toecho = $input;
+        return "";
+    } elsif ($input =~ /set\s+transpose\s+off/i) {
+	$transposeOutput = 0;
+	$toecho = $input;
+	return "";
+    }
+    logit("transposeoutput = $transposeOutput");
+    $input;
 }
 
 sub handle_echo {
-    $_;
+    my $e = '';
+    if ($toecho) {
+	$e = $toecho;
+	$toecho = '';
+    } else {
+	$e = $_;
+    }
+    return $e;
 }
 
 our $ft = new RlwrapFilter;
