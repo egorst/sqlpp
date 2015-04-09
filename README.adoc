@@ -19,4 +19,4 @@ New Commands
 
 * set transpose on/off, toggle transpose -- transpose output (like in Tom Kyte's print_table)
 
-* set compact on/off, toggle compact -- compact output
+* set compact on/off, toggle compact -- compact output (like in Postgres' psql)
