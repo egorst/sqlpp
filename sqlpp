@@ -1,2 +1,2 @@
 #!/bin/bash
-rlwrap -z ./sqlpp.pm sqlplus $*
+rlwrap -b "" -f $HOME/.sql/sql.dict -z ./sqlpp.pm sqlplus $*
