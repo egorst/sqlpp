@@ -23,17 +23,30 @@ sub handle_output {
 
 sub handle_input {
     my $input = $_;
-    logit("$input");
+    #logit("$input");
     if ($input =~ /set\s+transpose\s+on/i) {
         $transposeOutput = 1;
         $toecho = $input;
+        logit("transposeoutput = $transposeOutput");
         return "";
     } elsif ($input =~ /set\s+transpose\s+off/i) {
 	$transposeOutput = 0;
 	$toecho = $input;
+        logit("transposeoutput = $transposeOutput");
 	return "";
     }
-    logit("transposeoutput = $transposeOutput");
+    if ($input =~ /group\s+by\s+(\d+)/i) {
+        #logit("group by $1");
+        my $grnumber = $1;
+        my $grvalue;
+        $grnumber--;
+        if (/select\s+(.*)\s+from/i) {
+            #logit("select $1");
+            my @arr = split(',',$1);
+            $grvalue = $arr[$grnumber];
+            $input =~ s/(group\s+by\s+)(\d+)/$1$grvalue/;
+        }
+    }
     $input;
 }
 
