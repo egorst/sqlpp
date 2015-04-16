@@ -20,3 +20,16 @@ New Commands
 * set transpose on/off, toggle transpose -- transpose output (like in Tom Kyte's print_table)
 
 * set compact on/off, toggle compact -- compact output (like in Postgres' psql)
+
+Features
+~~~~~~~~
+* (scary) ability to silently rewrite user input. 
+
+For example
+
+  select username, count(*) from v$session group by 1;
+
+will be rewritten as
+
+  select username, count(*) from v$session group by username;
+
